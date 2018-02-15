@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { C, simple_application, string, button, repeat, any, unit } from 'monadic_react';
+import { stuff } from './Stuff'
 
 
 const options_buttons : C<string> = any<{},string>('allmybuttons')(
@@ -22,6 +23,10 @@ export class Home extends React.Component<{}, HomeState> {
             .then<string>('passtobutton',button<string>('Pass it up',false,'passitup'))
             ,s => this.setState({...this.state, title: s})) }
             {simple_application<string>(options_buttons,s => this.setState({...this.state,subtitle:s}))}
+            <div className='container-fluid' >
+            <h2>Here we start with the serious stuff</h2>
+            {simple_application(stuff,_ => console.log('Done, cool.'))}
+            </div>
         </div>;
     }
 }
